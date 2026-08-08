@@ -18,3 +18,30 @@ can't set in the compose file.
 You can access syncthing GUI on http://localhost:8384. The container is configured to ONLY expose it
 on the host, so if you want to manage syncthing from another device you'll have to edit the compose
 file.
+
+> [!IMPORTANT]
+> Make sure to set the GUI authentication login. Syncthing shows a big red warning while it's not
+> set, you can't miss it.
+
+## Systemd
+You can set up syncthing as a simple systemd user service.
+
+Put this in `~/.config/systemd/user`:
+```ini
+[Unit]
+Description=Syncthing service
+
+[Service]
+WorkingDirectory=/home/user/syncthing-container-hardened/
+ExecStart=/home/user/syncthing-container-hardened/run.sh
+Restart=never
+
+[Install]
+WantedBy=default.target
+```
+
+Then run:
+```bash
+systemctl --user daemon-reload
+systemctl --user enable --now syncthing.service
+```
