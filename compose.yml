@@ -1,0 +1,24 @@
+name: syncthing-hardened
+
+services:
+  syncthing:
+    image: syncthing:latest
+    user: nobody
+    ports:
+      - "21027:21027/udp"
+      - "22000:22000/tcp"
+      - "22000:22000/udp"
+      - "8384:8384/tcp"
+    security_opt:
+      - no-new-privileges=true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    mem_limit: 2g
+    cpus: 2
+    pids_limit: 256
+    volumes:
+      - ./test:/syncthing/shared-test:Z,nodev,noexec,nosuid
