@@ -1,6 +1,6 @@
 # syncthing-container-hardened
 
-Simple and secure podman container that runs `syncthing` inside a podman container. Builds on top of
+Simple and secure `syncthing` podman container. Builds on top of
 the [`syncthing:latest`](https://hub.docker.com/r/syncthing/syncthing) container and implements some
 additional security measures.
 
@@ -12,7 +12,7 @@ Might also work with Docker but I wouldn't know
 > much experience with podman in general and this repo is very much a learning project.
 
 ## Running
-Clone the repo and run the `run.sh` script. It's just a simple wrapper around podman for options I
+Clone the repo and run the `run.sh` script. It's just a simple wrapper around podman for options that
 can't set in the compose file.
 
 You can access syncthing GUI on http://localhost:8384. The container is configured to ONLY expose it
@@ -26,7 +26,7 @@ file.
 ## Systemd
 You can set up syncthing as a simple systemd user service.
 
-Put this in `~/.config/systemd/user`:
+Put this in `~/.config/systemd/user/`:
 ```ini
 [Unit]
 Description=Syncthing service
